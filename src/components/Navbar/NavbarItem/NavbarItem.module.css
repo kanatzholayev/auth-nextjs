@@ -1,0 +1,9 @@
+.navbar-icon svg path {
+	fill: #1e1e2e;
+	fill-opacity: 0.5;
+}
+
+.navbar-icon-active svg path {
+	fill: #4835d4;
+	fill-opacity: 1;
+}
