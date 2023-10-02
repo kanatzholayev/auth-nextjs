@@ -1,10 +1,9 @@
 import { Header } from '@/components/Header/Header';
 import Head from 'next/head';
-import './globals.css';
-import { Inter } from 'next/font/google';
-import { Navbar } from '@/components/Navbar/Navbar';
 
-const inter = Inter({ subsets: ['latin'] });
+import './globals.css';
+
+import { Navbar } from '@/components/Navbar/Navbar';
 
 export const metadata = {
 	title: 'Coinfill',
@@ -22,7 +21,7 @@ export default function RootLayout({ children }) {
 					rel="stylesheet"
 				/>
 			</Head>
-			<body className={inter.className}>
+			<body className="py-20">
 				<Header />
 				{children}
 				<Navbar />

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import { Button } from '@/components/Button/Button';
 import { BreadCrumb } from '@/components/Breadcrumb/Breadcrumb';
@@ -12,15 +12,16 @@ import 'react-image-crop/dist/ReactCrop.css';
 import { blobToBase64 } from '@/utils/blobToBase64';
 import { apiService } from '@/utils/apiService';
 import { getTokenFromCookie } from '@/utils/cookies';
+import { useRouter } from 'next/navigation';
 
-function centerAspectCrop(mediaWidth, mediaHeight, aspect) {
+function centerAspectCrop(mediaWidth, mediaHeight) {
 	return centerCrop(
 		makeAspectCrop(
 			{
 				unit: '%',
 				width: 100,
 			},
-			aspect,
+			1,
 			mediaWidth,
 			mediaHeight,
 		),
@@ -32,13 +33,22 @@ function centerAspectCrop(mediaWidth, mediaHeight, aspect) {
 const maxFileSize = 5 * 1024 * 1024; // 5MB
 
 const UploadPhoto = () => {
+	const { push } = useRouter();
+
 	const previewCanvasRef = useRef(null);
 	const imgRef = useRef(null);
 	const [imgSrc, setImgSrc] = useState('');
 	const [crop, setCrop] = useState();
 	const [fileSizeExceeded, setFileSizeExceeded] = useState(false);
-	const [aspect, setAspect] = useState(1 / 1);
+
 	const [completedCrop, setCompletedCrop] = useState();
+
+	useEffect(() => {
+		const token = getTokenFromCookie();
+		if (!token) {
+			push('/');
+		}
+	}, []);
 
 	useDebounceEffect(
 		async () => {
@@ -66,10 +76,8 @@ const UploadPhoto = () => {
 	};
 
 	const onImageLoad = e => {
-		if (aspect) {
-			const { width, height } = e.currentTarget;
-			setCrop(centerAspectCrop(width, height, aspect));
-		}
+		const { width, height } = e.currentTarget;
+		setCrop(centerAspectCrop(width, height));
 	};
 
 	const onUpload = async () => {
@@ -81,7 +89,9 @@ const UploadPhoto = () => {
 			if (!blob) {
 				throw new Error('Failed to create blob');
 			}
-			blobToBase64(blob).then(image => apiService.uploadImage(image, getTokenFromCookie()));
+			blobToBase64(blob).then(image =>
+				apiService.uploadImage(image, getTokenFromCookie()).then(() => (window.location = '/profile')),
+			);
 		});
 	};
 
@@ -112,7 +122,7 @@ const UploadPhoto = () => {
 							crop={crop}
 							onChange={c => setCrop(c)}
 							onComplete={c => setCompletedCrop(c)}
-							aspect={aspect}
+							aspect={1}
 							circularCrop
 						>
 							<img ref={imgRef} alt="Avatar" src={imgSrc} onLoad={onImageLoad} />
