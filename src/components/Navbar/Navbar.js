@@ -2,7 +2,7 @@ import { NavbarItem } from './NavbarItem/NavbarItem';
 
 export const Navbar = () => {
 	return (
-		<nav className="fixed bottom-0 left-0 h-20 w-full flex justify-around place-items-center bg-gradient-lightblue shadow-navbar text-inactive ">
+		<nav className="fixed bottom-0 left-0 h-20 w-full flex justify-around place-items-center bg-white bg-gradient-lightblue shadow-navbar text-inactive ">
 			<NavbarItem
 				icon={
 					<svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jwt-decode": "^3.1.2",
     "next": "^13.5.3",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-image-crop": "^10.1.8",
+    "universal-cookie": "^6.1.1"
   },
   "devDependencies": {
     "autoprefixer": "latest",
