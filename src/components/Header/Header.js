@@ -1,6 +1,6 @@
 'use client';
 
-import { getTokenFromCookie } from '@/utils/cookies';
+import { useToken } from '@/utils/useToken';
 import { apiService } from '@/utils/apiService';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,10 +8,10 @@ import { useState, useEffect } from 'react';
 
 export const Header = () => {
 	const [imgSrc, setImgSrc] = useState('/profile.svg');
+	const { token } = useToken();
 
 	useEffect(() => {
 		(async () => {
-			const token = getTokenFromCookie();
 			if (token) {
 				const response = await apiService.getImage(token);
 				if (response.ok) {

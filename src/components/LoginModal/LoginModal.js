@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Modal } from '@/components/Modal/Modal';
 import { Button } from '@/components/Button/Button';
 import { apiService } from '@/utils/apiService';
-import { setTokenToCookie } from '@/utils/cookies';
+import { useToken } from '@/utils/useToken';
 
 export const LoginModal = () => {
 	const [formData, setFormData] = useState({
@@ -15,6 +15,8 @@ export const LoginModal = () => {
 	});
 	const [agreement, setAgreement] = useState(false);
 	const [errors, setErrors] = useState({});
+
+	const { setToken } = useToken();
 
 	const handleInput = e => {
 		const fieldName = e.target.name;
@@ -53,7 +55,7 @@ export const LoginModal = () => {
 			try {
 				const response = await apiService.login({ email: formData.email, password: formData.password });
 				if (response.ok) {
-					setTokenToCookie(response.token);
+					setToken(response.token);
 					setErrors({ ...errors, register: undefined });
 					window.location = '/profile';
 				} else {

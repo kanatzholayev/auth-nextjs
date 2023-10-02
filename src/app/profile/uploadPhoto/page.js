@@ -11,7 +11,7 @@ import ReactCrop, { centerCrop, makeAspectCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { blobToBase64 } from '@/utils/blobToBase64';
 import { apiService } from '@/utils/apiService';
-import { getTokenFromCookie } from '@/utils/cookies';
+import { useToken } from '@/utils/useToken';
 import { useRouter } from 'next/navigation';
 
 function centerAspectCrop(mediaWidth, mediaHeight) {
@@ -40,11 +40,11 @@ const UploadPhoto = () => {
 	const [imgSrc, setImgSrc] = useState('');
 	const [crop, setCrop] = useState();
 	const [fileSizeExceeded, setFileSizeExceeded] = useState(false);
-
 	const [completedCrop, setCompletedCrop] = useState();
 
+	const { token } = useToken();
+
 	useEffect(() => {
-		const token = getTokenFromCookie();
 		if (!token) {
 			push('/');
 		}
@@ -90,7 +90,7 @@ const UploadPhoto = () => {
 				throw new Error('Failed to create blob');
 			}
 			blobToBase64(blob).then(image =>
-				apiService.uploadImage(image, getTokenFromCookie()).then(() => (window.location = '/profile')),
+				apiService.uploadImage(image, token).then(() => (window.location = '/profile')),
 			);
 		});
 	};

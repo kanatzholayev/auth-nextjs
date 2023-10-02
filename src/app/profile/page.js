@@ -4,14 +4,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/Button/Button';
-import { getTokenFromCookie } from '@/utils/cookies';
+import { useToken } from '@/utils/useToken';
 import { useEffect } from 'react';
 
 const Profile = () => {
 	const { push } = useRouter();
 
+	const { token } = useToken();
+
 	useEffect(() => {
-		const token = getTokenFromCookie();
 		if (!token) {
 			push('/');
 		}
