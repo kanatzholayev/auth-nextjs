@@ -9,7 +9,7 @@ export default function Home({ searchParams }) {
 	const modal = searchParams?.modal;
 
 	return (
-		<main className="px-7">
+		<div className="px-7">
 			<h1 className="text-2xl text-primary mt-11 mb-20 ml-2 font-bold primary">Выберите действие</h1>
 			<Link href="/?modal=loginModal">
 				<Button theme="orange">Login</Button>
@@ -21,6 +21,6 @@ export default function Home({ searchParams }) {
 			{modal === 'loginModal' && <LoginModal />}
 
 			{modal === 'registrationsModal' && <RegisterModal />}
-		</main>
+		</div>
 	);
 }

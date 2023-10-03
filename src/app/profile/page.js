@@ -19,12 +19,12 @@ const Profile = () => {
 	}, []);
 
 	return (
-		<main className="px-7">
+		<div className="px-7">
 			<h1 className="text-2xl text-primary mt-11 mb-20 font-bold primary">Привет!</h1>
 			<Link href="/profile/uploadPhoto">
 				<Button theme="blue">Загрузить аватар</Button>
 			</Link>
-		</main>
+		</div>
 	);
 };
 

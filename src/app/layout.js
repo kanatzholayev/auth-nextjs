@@ -1,7 +1,7 @@
 import { Header } from '@/components/Header/Header';
 import Head from 'next/head';
 
-import './globals.css';
+import '@/app/globals.css';
 
 import { Navbar } from '@/components/Navbar/Navbar';
 
