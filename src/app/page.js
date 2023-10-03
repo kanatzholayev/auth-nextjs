@@ -1,13 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/Button/Button';
-
 import { LoginModal } from '@/components/LoginModal/LoginModal';
 import { RegisterModal } from '@/components/RegisterModal/RegisterModal';
 import { useToken } from '@/utils/useToken';
-import { useRouter } from 'next/navigation';
 
 export default function Home() {
 	const { push } = useRouter();

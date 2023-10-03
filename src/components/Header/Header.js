@@ -1,25 +1,16 @@
 'use client';
 
 import { useToken } from '@/utils/useToken';
-import { apiService } from '@/utils/apiService';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+
+import { useImage } from '@/utils/useImage';
 
 export const Header = () => {
-	const [imgSrc, setImgSrc] = useState('/profile.svg');
 	const { token } = useToken();
 
-	useEffect(() => {
-		(async () => {
-			if (token) {
-				const response = await apiService.getImage(token);
-				if (response.ok) {
-					setImgSrc(response.image);
-				}
-			}
-		})();
-	}, []);
+	const { imgSrc } = useImage(token);
 
 	return (
 		<header className="absolute top-0 left-0 w-full flex justify-between place-items-end px-7 py-4 ">

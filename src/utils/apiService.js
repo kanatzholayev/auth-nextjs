@@ -28,7 +28,7 @@ export const apiService = {
 	getImage: async token => {
 		const response = await fetch(`${URL}/account/image`, {
 			headers: {
-				'token-tt': token,
+				'Token-Tt': token,
 				'Content-Type': `application/json`,
 			},
 			credentials: `same-origin`,
