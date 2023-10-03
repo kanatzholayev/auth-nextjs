@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 import Image from 'next/image';
 
@@ -7,7 +6,7 @@ import { Button } from '@/components/Button/Button';
 import { apiService } from '@/utils/apiService';
 import { useToken } from '@/utils/useToken';
 
-export const LoginModal = () => {
+export const LoginModal = ({ setModalState }) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -68,7 +67,7 @@ export const LoginModal = () => {
 	};
 
 	return (
-		<Modal title="Логин">
+		<Modal title="Логин" setModalState={setModalState}>
 			<div className="px-3">
 				<form onSubmit={onLogin}>
 					<div className="flex flex-col place-items-start gap-2 mb-5">

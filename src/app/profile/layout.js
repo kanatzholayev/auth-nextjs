@@ -1,7 +1,3 @@
-import { Header } from '@/components/Header/Header';
-import Head from 'next/head';
-
-import { Navbar } from '@/components/Navbar/Navbar';
 import { BreadCrumb } from '@/components/Breadcrumb/Breadcrumb';
 
 export const metadata = {
@@ -9,7 +5,7 @@ export const metadata = {
 	description: 'Coinfill',
 };
 
-export default RootLayout = ({ children }) => {
+export default function RootLayout({ children }) {
 	return (
 		<>
 			<BreadCrumb
@@ -31,4 +27,4 @@ export default RootLayout = ({ children }) => {
 			{children}
 		</>
 	);
-};
+}

@@ -7,6 +7,7 @@ import { canvasPreview } from '@/utils/canvasPreview';
 
 import { blobToBase64 } from '@/utils/blobToBase64';
 import { apiService } from '@/utils/apiService';
+import { useToken } from '@/utils/useToken';
 
 const centerAspectCrop = (mediaWidth, mediaHeight) => {
 	return centerCrop(
@@ -28,6 +29,8 @@ export const CropImage = ({ crop, setCrop, imgSrc, setImgSrc }) => {
 	const previewCanvasRef = useRef(null);
 	const imgRef = useRef(null);
 	const [completedCrop, setCompletedCrop] = useState();
+
+	const { token } = useToken();
 
 	useDebounceEffect(
 		async () => {

@@ -6,8 +6,9 @@ import Image from 'next/image';
 import { Modal } from '@/components/Modal/Modal';
 import { Button } from '@/components/Button/Button';
 import { apiService } from '@/utils/apiService';
+import { useToken } from '@/utils/useToken';
 
-export const RegisterModal = () => {
+export const RegisterModal = ({ setModalState }) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -15,6 +16,8 @@ export const RegisterModal = () => {
 	});
 	const [agreement, setAgreement] = useState(false);
 	const [errors, setErrors] = useState({});
+
+	const { setToken } = useToken();
 
 	const handleInput = e => {
 		const fieldName = e.target.name;
@@ -57,7 +60,7 @@ export const RegisterModal = () => {
 			try {
 				const response = await apiService.register({ email: formData.email, password: formData.password });
 				if (response.ok) {
-					setTokenToCookie(response.token);
+					setToken(response.token);
 					setErrors({ ...errors, register: undefined });
 					window.location = '/profile';
 				} else {
@@ -70,7 +73,7 @@ export const RegisterModal = () => {
 	};
 
 	return (
-		<Modal title="Регистрация">
+		<Modal title="Регистрация" setModalState={setModalState}>
 			<div className="px-3">
 				<form onSubmit={onRegister}>
 					<div className="flex flex-col place-items-start gap-2 mb-5">

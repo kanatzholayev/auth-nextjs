@@ -25,7 +25,7 @@ const UploadPhoto = () => {
 
 	return (
 		<div className="px-7">
-			{!!imgSrc ? (
+			{imgSrc ? (
 				<CropImage crop={crop} setCrop={setCrop} imgSrc={imgSrc} setImgSrc={setImgSrc} />
 			) : (
 				<SelectImage setCrop={setCrop} setImgSrc={setImgSrc} />
