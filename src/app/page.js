@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { LoginModal } from '@/components/LoginModal/LoginModal';
 import { RegisterModal } from '@/components/RegisterModal/RegisterModal';
 
-export default function Home({ searchParams }) {
+export default Home = ({ searchParams }) => {
 	const modal = searchParams?.modal;
 
 	return (
@@ -23,4 +23,4 @@ export default function Home({ searchParams }) {
 			{modal === 'registrationsModal' && <RegisterModal />}
 		</div>
 	);
-}
+};

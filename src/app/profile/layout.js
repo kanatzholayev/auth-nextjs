@@ -9,7 +9,7 @@ export const metadata = {
 	description: 'Coinfill',
 };
 
-export default function RootLayout({ children }) {
+export default RootLayout = ({ children }) => {
 	return (
 		<>
 			<BreadCrumb
@@ -31,4 +31,4 @@ export default function RootLayout({ children }) {
 			{children}
 		</>
 	);
-}
+};

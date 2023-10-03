@@ -10,7 +10,7 @@ export const metadata = {
 	description: 'Coinfill',
 };
 
-export default function RootLayout({ children }) {
+export default RootLayout = ({ children }) => {
 	return (
 		<html lang="en">
 			<Head>
@@ -28,4 +28,4 @@ export default function RootLayout({ children }) {
 			</body>
 		</html>
 	);
-}
+};

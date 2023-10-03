@@ -1,4 +1,4 @@
-export async function canvasPreview(image, canvas, crop) {
+export const canvasPreview = (image, canvas, crop) => {
 	const ctx = canvas.getContext('2d');
 
 	if (!ctx) {
@@ -31,4 +31,4 @@ export async function canvasPreview(image, canvas, crop) {
 	ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight, 0, 0, image.naturalWidth, image.naturalHeight);
 
 	ctx.restore();
-}
+};

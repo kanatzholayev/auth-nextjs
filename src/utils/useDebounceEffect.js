@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export function useDebounceEffect(fn, waitTime, deps) {
+export const useDebounceEffect = (fn, waitTime, deps) => {
 	useEffect(() => {
 		const t = setTimeout(() => {
 			fn.apply(undefined, deps);
@@ -10,4 +10,4 @@ export function useDebounceEffect(fn, waitTime, deps) {
 			clearTimeout(t);
 		};
 	}, deps);
-}
+};
